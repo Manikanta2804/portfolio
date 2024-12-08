@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+   
+
+  nav {
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+    padding: 10px 0;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 10px;
+    font-size: 0.9rem;
+    position: relative;
+    padding: 5px;
+    transition: color 0.3s ease-in-out;
+  }
+
+  section {
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+
+
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    nav {
+      flex-direction: column;
+      padding: 5px 0;
+    }
+
+    nav a {
+      font-size: 0.8rem;
+      margin: 5px 0;
+    }
+
+  
+
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    nav a {
+      font-size: 0.7rem;
+    }
+
+  
+
+    h1 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: grey;
+      padding: 15px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.2rem;
+      position: relative;
+      padding: 10px;
+      transition: color 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background-color: #4CAF50;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav a:hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    #about {
+      background: url("background.png") no-repeat center center;
+background-size: cover;
+      color: #000;
+      padding: 50px 20px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    #about img {
+      width: 200px;
+      border-radius: 50%;
+      margin: 20px 0;
+    }
+      .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.5);
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.5);
+    }
+
+    .modal:target {
+      display: flex;
+    }
+    .skills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .skills img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    a {
+      display: inline-block;
+      margin: 10px;
+      text-decoration: none;
+      color: white;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+      background: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    form button {
+      background: red;
+      color: white;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: darkred;
+    }
+
+    #gallery {
+      position: relative;
+      width: 200px;
+      height: 350px;
+      transform-style: preserve-3d;
+      animation: gallery 20s linear infinite;
+      margin: 0 auto;
+    }
+
+    #gallery span {
+      position: absolute;
+      width: 200px;
+      height: 350px;
+      transform-origin: center;
+      transform-style: preserve-3d;
+    }
+
+    #gallery span img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    #gallery span:nth-child(1) {
+      transform: rotateY(0deg) translateZ(300px);
+    }
+
+    #gallery span:nth-child(2) {
+      transform: rotateY(60deg) translateZ(300px);
+    }
+
+    #gallery span:nth-child(3) {
+      transform: rotateY(120deg) translateZ(300px);
+    }
+
+    #gallery span:nth-child(4) {
+      transform: rotateY(180deg) translateZ(300px);
+    }
+
+    #gallery span:nth-child(5) {
+      transform: rotateY(240deg) translateZ(300px);
+    }
+
+    #gallery span:nth-child(6) {
+      transform: rotateY(300deg) translateZ(300px);
+    }
+
+    @keyframes gallery {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+
+    .main {
+      align-items: center;
+      text-align: center;
+      box-shadow:-2px -2px 3px #ffffff0d, 3px 3px 3px #00000033;
+      justify-content:center;
+      text-decoration:none;
+      transition:all .2s ease-in-out;
+    }
+
+    #projects {
+      width: 100%;
+      height: 500px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 20px 20px 10px grey;
+      animation: projects 12s infinite;
+    }
+
+    @keyframes projects {
+  
+      0% {
+        background-image: url("https://flet.dev/img/docs/calc-tutorial/calc-app.gif");
+      }
+      100% {
+        background-image: url("https://uxdt.nic.in/wp-content/uploads/2020/02/loginform3_p-3.png");
+      }
+    }
+
+    h1 {
+      text-align: center;
+      align-items: center;
+    }
+    #education {
+      background-image: url("");
+    }
+    .image {
+      border-radius: 6%;
+    }
+
+    .h1 {
+      background-color: lightgreen;
+    }
+    .social-icon {
+    transition: filter 0.3s ease;
+  }
+
+  .social-icon:hover {
+    filter: brightness(1.2); 
+  }
+    .container{
+    margin:100px 0 0 200px;
+    width:70%;
+    height:450px;
+    display:flex;
+    justify-content:center;
+    text-align:center;
+    gap:6px;
+}
+  .container img{
+width:10%;
+  height:100%;
+  object-fit:cover;
+  border-radius:10px;
+  border:2px solid rbga(255,255,255,0.6);
+  transition:all in ease-in-out;}
+  .container img:hover{
+width:26%;}
+    .git{
+border-radius:6%;
+      transition:all in ease-in-out;
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.5);}
+   .git img:hover{
+width:26%;}
+     .container{
+    margin:100px 0 0 200px;
+    width:30%;
+    height:250px;
+    display:flex;
+    justify-content:center;
+    text-align:center;
+       align-items:center;
+       margin-left:36%;
+    gap:20px;
+}
+  .container img{
+width:26%;
+  height:100%;
+  object-fit:cover;
+  border-radius:10px;
+  border:2px solid rbga(255,255,255,0.6);
+  transition:all in ease-in-out;}
+  .container img:hover{
+width:66%;}
+    .source{
+      border:none;
+      cursor:pointer;
+      border-radius:6%;
+      background-color:cyan;
+        box-shadow:0 0 5px cyan, 0 0 25px cyan;
+}
+    .source:hover{
+      box-shadow:0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan,0 0 200px cyan; 
+}
+.sk{
+      background-color:skyblue;
+    }
+    .co{
+      background-color:violet;
+}
+.social-icon{
+  border-radius:16%;;
+}
+.social-icon:hover{
+      box-shadow:0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan,0 0 200px cyan; 
+}
+#about img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.4);
+    }
+    #education img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#gallery">Skills</a>
+    <a href="#connect">Connect</a>
+  </nav>
+
+  <section id="about">
+    <img src="background.png"></img>
+    <h1>About</h1>
+    <p>Hi, I am Sangani Manikanta</p>
+ <a href="#modal1">
+      <img src="mkvarma.jpg" alt="Manikanta">
+    </a>
+  </section>
+
+  <div id="modal1" class="modal">
+    <a href="#">
+      <img src="mkvarma.jpg" alt="zoom">
+    </a>
+  </div>
+
+  <h1>Projects</h1>
+  <ol>
+    <li><span>Calculator using (html,css and javascript)</span></li>
+    <li><span>Form validation using (html,css and javascript)</span></li>
+  </ol>
+  <section id="projects">
+    
+  </section><br>
+
+  <a href="https://github.com/Manikanta2804/Manikanta2804"><button class="source">Source code</button></a><br><br>
+<h1 class="sk">Skills</h1>
+  <section id="gallery">
+    <h1>Languages</h1>
+    <span><img src="https://jbstechinfo.com/wp-content/uploads/2023/08/JavaScript-Symbol.png" alt="Javascript">JavaScript</span>
+    <span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png" alt="Python">Python</span>
+    <span><img src="https://beecrowd.com/wp-content/uploads/2024/04/2023-06-01-Java.jpg" alt="Java">Java</span>
+    <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s" alt="Html">Html</span>
+    <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpXaDo9xQfNOh-0nAtgdMzekEMdTbESQoFhQ&s" alt="Css">Css</span>
+    <div class="container">
+  </section><br><br><br><br>
+        <h1>Frameworks<h1>
+        <img src="https://e7.pngegg.com/pngimages/713/558/png-clipart-computer-icons-pro-git-github-logo-text-logo-thumbnail.png" width="100px" class="git"></img>
+    </div><br><br>
+       <h1>Domain</h1>
+    <div class="container">
+      <img src="https://www.shutterstock.com/image-vector/data-science-vector-icon-260nw-1054542323.jpg" width="100px">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png" width="100px"></img>
+    </div>
+  
+  
+  <section id="education">
+    <h1 class="h1">Education</h1>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt3ObEmm-uktTwR9xwMm1yyLKTDtMTfT8yXg&s" class="image" alt="Education">
+    <p>Bachelor Of Technology</p>
+    <p>CSE (Computer Science and Engineering)</p>
+    <p>Cgpa: 7.8</p>
+    <h2>Course Work</h2>
+    <ul id="ul">
+      <li>Operating Systems</li>
+      <li>Data Structures</li>
+      <li>OOPs</li>
+      <li>Web Development (HTML, CSS & JavaScript)</li>
+    </ul>
+  </section>
+
+  
+
+
+  <section class="main" id="connect">
+    <h1 class="co">Connect</h1>
+  <a href="https://wa.me/9515486671?text=hii"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1022px-WhatsApp.svg.png" width="60px" alt="WhatsApp" class="social-icon"></a>
+<a href="mailto:manikantasangani38@email.com"><img src="https://cdn.worldvectorlogo.com/logos/gmail-icon-2.svg" width="80px" alt="G-mail" class="social-icon"></a>
+<a href="https://www.linkedin.com/in/manikanta-sangani-9ab58a289/"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="50px" alt="LinkedIn" class="social-icon"></a>
+    <a href="https://github.com/Manikanta2804/Manikanta2804"><img src="https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png"width="56px" class="social-icon" id="social"></a>
+  </section>
+</body>
+</html>
